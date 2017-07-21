@@ -90,14 +90,14 @@ y_test = None
 
 ## Data Load
 
-The data provided contain the output from the video story understanding module, i.e. reconstructed story sentence $s_i$, where 
+The data provided contain the output from the video story understanding module, i.e. reconstructed story sentence ![first eq](https://latex.codecogs.com/gif.latex?%24s_i%24), where 
 
-$$ s_i = ê_i || l_i $$  
-- $ê_i$ is the description for the i-th video scene, which is retrieved by the video story understanding module <br>
-- $l_i$ is the subtitle of the i-th video scene <br>
+![second eq](https://latex.codecogs.com/gif.latex?%24%24%20s_i%20%3D%20%EA_i%20%7C%7C%20l_i%20%24%24)
+- ![third eq](https://latex.codecogs.com/gif.latex?%24e_i%24) is the description for the i-th video scene, which is retrieved by the video story understanding module <br>
+- ![fourth eq](https://latex.codecogs.com/gif.latex?%24l_i%24) is the subtitle of the i-th video scene <br>
 - || is concatenation <br>
 
-For example, $s_i$ can be ‘there are three friends on the ground. the friends are talking about the new house.’
+For example, ![first eq](https://latex.codecogs.com/gif.latex?%24s_i%24) can be ‘there are three friends on the ground. the friends are talking about the new house.’
 
 
 ```python
@@ -296,15 +296,15 @@ To handle the long sentences, the word level attention-based model is used as th
 
 The model builds the embeddings of two sequences of tokens X, Y. The model encodes each token of X, Y using a bidirectional LSTM and calculates the sentence vector X by applying a convolution on the output token vectors of the bidirectional LSTM on the X side. Then the each token vector of Y are multiplied by a softmax weight, which is determined by X. 
 
-$$m(t)=tanh(W_ah_y(t)+W_qX)$$
-$$o_t \propto exp(w^t_{ms}m(t))$$
-$$h^\prime_y(t)=h_y(t)o_t$$
+![fifth eq](https://latex.codecogs.com/gif.latex?%24%24m%28t%29%3Dtanh%28W_ah_y%28t%29&plus;W_qX%29%24%24) <br>
+![sixth eq](https://latex.codecogs.com/gif.latex?%24%24o_t%20%5Cpropto%20exp%28w%5Et_%7Bms%7Dm%28t%29%29%24%24) <br>
+![seventh eq](https://latex.codecogs.com/gif.latex?%24%24h%5E%5Cprime_y%28t%29%3Dh_y%28t%29o_t%24%24) <br>
 
 where 
-- $h_y(t)$ is the t-th token vector on the Y side.
-- $h^\prime_y(t)$ is the
+- ![eigth eq](https://latex.codecogs.com/gif.latex?%24h_y%28t%29%24) is the t-th token vector on the Y side.
+- ![nineth eq](https://latex.codecogs.com/gif.latex?%24h%5E%5Cprime_y%28t%29%24) is the
 updated t-th token vector. 
-- $W_a, W_q, w_{ms}$ are attention
+- ![tenth eq](https://latex.codecogs.com/gif.latex?%24W_a%2C%20W_q%2C%20w_%7Bms%7D%24) are attention
 parameters
 
 ``` python
@@ -497,13 +497,12 @@ def build_model():
 ## Loss Function
 Training is performed with a hinge rank loss over these two triplets:
 
-$$\sum_{s_i \neq s^*}^{|X|} max(0, \gamma_s - G(q,s^*) + G(q,s_i)) + \sum_{a_r \neq a^*}^{k} max(0, \gamma_a - H(s_a,s^*) + H(s_a, a_r))$$
+![eleventh eq](https://latex.codecogs.com/gif.latex?%24%24%5Csum_%7Bs_i%20%5Cneq%20s%5E*%7D%5E%7B%7CX%7C%7D%20max%280%2C%20%5Cgamma_s%20-%20G%28q%2Cs%5E*%29%20&plus;%20G%28q%2Cs_i%29%29%20&plus;%20%5Csum_%7Ba_r%20%5Cneq%20a%5E*%7D%5E%7Bk%7D%20max%280%2C%20%5Cgamma_a%20-%20H%28s_a%2Cs%5E*%29%20&plus;%20H%28s_a%2C%20a_r%29%29%24%24)
 
 where 
-- $s^*$ is the correct relevant story for q, i.e. $s^* = ê_c || l_c$
-- $a^*$ is the correct answer sentence for q. 
-- $γ_s$ and $γ_a$ are margins 
-
+- ![twelveth eq](https://latex.codecogs.com/gif.latex?%24s%5E*%24) is the correct relevant story for q, i.e. ![thirteenth eq](https://latex.codecogs.com/gif.latex?%24s%5E*%20%3D%20e_c%20%7C%7C%20l_c%24)
+- ![fourteenth eq](https://latex.codecogs.com/gif.latex?%24a%5E*%24) is the correct answer sentence for q. 
+- ![fifteenth eq](https://latex.codecogs.com/gif.latex?y_s) and ![sixteenth eq](https://latex.codecogs.com/gif.latex?y_a) are margins 
 
 ``` python
 '''
