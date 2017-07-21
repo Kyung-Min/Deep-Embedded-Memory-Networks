@@ -92,7 +92,7 @@ y_test = None
 
 The data provided contain the output from the video story understanding module, i.e. reconstructed story sentence ![first eq](https://latex.codecogs.com/gif.latex?%24s_i%24), where 
 
-![second eq](https://latex.codecogs.com/gif.latex?%24%24%20s_i%20%3D%20%EA_i%20%7C%7C%20l_i%20%24%24)
+![second eq](https://latex.codecogs.com/gif.latex?s_i%3De_i%7C%7Cl_i)
 - ![third eq](https://latex.codecogs.com/gif.latex?%24e_i%24) is the description for the i-th video scene, which is retrieved by the video story understanding module <br>
 - ![fourth eq](https://latex.codecogs.com/gif.latex?%24l_i%24) is the subtitle of the i-th video scene <br>
 - || is concatenation <br>
