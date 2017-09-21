@@ -474,13 +474,13 @@ def build_model():
     N, input_nodes_emb, output_nodes_emb = embedding()
     
     # story selection
-    ptscorer_inputs1, ptscorer_inputs2 = avg_model(output_nodes_emb[:4], N, pfx='S')
+    ptscorer_inputs1, ptscorer_inputs2 = attention_model(output_nodes_emb[:4], N, pfx='S')
 
     scoreS1, scoreS2 = mlp_ptscorer(ptscorer_inputs1, ptscorer_inputs2, conf['Ddim'], N,  
             conf['l2reg'], pfx='outS', oact='sigmoid')                
 
     # anwer selection
-    ptscorer_inputs3, ptscorer_inputs4 = avg_model(output_nodes_emb[4:], N, pfx='A')
+    ptscorer_inputs3, ptscorer_inputs4 = attention_model(output_nodes_emb[4:], N, pfx='A')
     
     scoreA1, scoreA2 = mlp_ptscorer(ptscorer_inputs3, ptscorer_inputs4, conf['Ddim'], N,
             conf['l2reg'], pfx='outA', oact='sigmoid')
