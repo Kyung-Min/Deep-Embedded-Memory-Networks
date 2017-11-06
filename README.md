@@ -3,7 +3,9 @@
 ##### Authors: Kyung-Min Kim, Min-Oh Heo, Seong-Ho Choi, and Byoung-Tak Zhang (Seoul National University & Surromind Robotics)
 ##### Paper: DeepStory: Video Story QA by Deep Embedded Memory Networks (https://arxiv.org/abs/1707.00836) (IJCAI 2017)
 
-This notebook shows how the DEMN works. The DEMN consists of three modules (video story understanding, story selection, answer selection). This code corresponds to QA modules (story selection, answer selection) among them. The results of the video understanding module are reflected in the data provided (We are solving the copyright problem of the data. Soon the data will be released).
+This notebook shows how the DEMN works. The DEMN consists of three modules (video story understanding, story selection, answer selection). This code corresponds to QA modules (story selection, answer selection) among them. 
+
+PororoQA dataset release: https://github.com/Kyung-Min/PororoQA
 
 ```python
 from __future__ import print_function
